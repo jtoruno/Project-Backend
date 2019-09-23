@@ -17,6 +17,13 @@ service: project-aws-backend # NOTE: update this with your service name
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
 
+custom:
+  accountId: 450494188345
+  stage: ${opt:stage, self:provider.stage}
+  settings:
+    dev:
+    prod:
+
 provider:
   name: aws
   runtime: nodejs8.10
@@ -103,3 +110,6 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+
+resources:
+  - ${file(resources/cognito-user-pool.yml)}
